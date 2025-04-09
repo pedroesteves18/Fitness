@@ -1,6 +1,7 @@
 import User from "../models/User.js"
 import { Op } from "sequelize"
 import bcrypt from 'bcrypt'
+import Factory from "./Factory/Factory.js"
 
 export default {
     async compararSenha(senha,hash){
@@ -13,23 +14,9 @@ export default {
 
     async cadastrarUser(usuario){
         try{
-            let credenciaisUtilizadas = await this.verificaUserCadastrados(usuario)
-            if(credenciaisUtilizadas){
-                return credenciaisUtilizadas
-            }
             usuario.senha = await this.setHash(usuario.senha)
-            console.log(usuario.senha)
-            let usuarioCriado = User.create({
-                nome: usuario.nome,
-                senha: usuario.senha,
-                email: usuario.email,
-                foto: usuario.foto
-            })
-            if(usuarioCriado){
-                return {status: 200, msg:'Usuário Cadastrado'}
-            }
 
-            return {status: 400, msg:'Erro no cadastro do Usuário no banco de dados'}
+            return Factory.factory('usuario',usuario)
         }catch(err){
             return {status: 500, msg:'Erro no cadastro do Usuário no banco de dados'}
         }

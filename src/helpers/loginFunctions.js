@@ -22,7 +22,12 @@ export default {
                 let senhaCorreta = await this.compararSenha(usuario.senha, userEncontrado.senha)
 
                 if(senhaCorreta){
-                    let token = await middlewares.setToken(userEncontrado)
+                    let token
+                    try{
+                        token = middlewares.setToken(userEncontrado)
+                    }catch(err){
+                        return {status: token.status, msg:token.msg}
+                    }
                     return {status: 200, msg:`Usuario encontrado!`, usuario: userEncontrado,token:token}
                 }
                 return {status: 401,msg:`Senha incorreta`}
