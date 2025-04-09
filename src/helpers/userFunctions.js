@@ -18,6 +18,7 @@ export default {
                 return credenciaisUtilizadas
             }
             usuario.senha = await this.setHash(usuario.senha)
+            console.log(usuario.senha)
             let usuarioCriado = User.create({
                 nome: usuario.nome,
                 senha: usuario.senha,
@@ -36,16 +37,10 @@ export default {
 
     async verificaUserCadastrados(usuario){
         try{
-            usuario.senha = await this.setHash(usuario.senha)
-            console.log(usuario)
             let encontrado = await User.findOne({
-                where: {
-                    [Op.or]:[
-                        {email : usuario.email},
-                        {senha : usuario.senha}
-                    ]
-                }
+                where: {email : usuario.email}
             })
+
             if(encontrado){
                 return {status:400,msg:'Credenciais já utilizadas!'}
             }

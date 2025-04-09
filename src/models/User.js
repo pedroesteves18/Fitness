@@ -18,6 +18,11 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    admin: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+    },
     foto: {
         type: DataTypes.BLOB('long'),
         allowNull: true
