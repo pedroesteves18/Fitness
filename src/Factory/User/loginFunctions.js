@@ -1,9 +1,9 @@
-import User from "../models/User.js";
+
 import bcrypt from "bcrypt"
 import {Op} from 'sequelize'
-import middlewares from "../auth/middlewares.js";
-import DefaultUserFindStrategy from './Factory/Strategies/UserFind/DefaultUserFindStrategy.js'
-import UserStrategy from "./Factory/Strategies/UserStrategy.js";
+import middlewares from "../../auth/middlewares.js";
+import DefaultUserFindStrategy from './Strategies/UserFind/DefaultUserFindStrategy.js'
+import UserStrategy from "./Strategies/UserStrategy.js";
 
 export default {
     async setHash(senha){

@@ -1,7 +1,7 @@
-import User from "../models/User.js"
+import User from "../../models/User.js"
 import { Op } from "sequelize"
 import bcrypt from 'bcrypt'
-import Factory from "./Factory/Factory.js"
+import Factory from "./Factory.js"
 
 export default {
     async compararSenha(senha,hash){

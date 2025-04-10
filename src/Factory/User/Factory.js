@@ -1,6 +1,6 @@
 import BuilderFactory from "./BuilderFactory.js"
-import User from "../../models/User.js"
-import userFunctions from '../userFunctions.js'
+
+import userFunctions from './userFunctions.js'
 import UserStrategyFactory from './UserStrategyFactory.js'
 
 export default class Factory{

@@ -1,9 +1,9 @@
 import Router from "router";
-import Factory from "../helpers/Factory/Factory.js";
+import Factory from "../Factory/User/Factory.js";
 import middlewares from "../auth/middlewares.js";
 
-import AllUserFindStrategy from '../helpers/Factory/Strategies/UserFind/AllUserFindStrategy.js'
-import UserStrategy from "../helpers/Factory/Strategies/UserStrategy.js";
+import AllUserFindStrategy from '../Factory/User/Strategies/UserFind/AllUserFindStrategy.js'
+import UserStrategy from "../Factory/User/Strategies/UserStrategy.js";
 const router = Router()
 
 router.post('/cadastro', async (req,res)=>{

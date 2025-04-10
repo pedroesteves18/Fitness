@@ -1,5 +1,5 @@
 import Router from "router";
-import loginHelper from "../helpers/loginHelper.js";
+import loginHelper from "../Factory/User/loginHelper.js";
 const router = Router()
 
 router.post('/', async (req,res) => {
