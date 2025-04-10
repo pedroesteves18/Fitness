@@ -2,7 +2,8 @@ import User from "../models/User.js";
 import bcrypt from "bcrypt"
 import {Op} from 'sequelize'
 import middlewares from "../auth/middlewares.js";
-
+import DefaultUserFindStrategy from './Factory/Strategies/UserFind/DefaultUserFindStrategy.js'
+import UserStrategy from "./Factory/Strategies/UserStrategy.js";
 
 export default {
     async setHash(senha){
@@ -14,13 +15,11 @@ export default {
 
     async procuraUserLogin(usuario){
         try{
-            let userEncontrado = await User.findOne({
-                where:{email: usuario.email}
-            })
+            
+            let userEncontrado = await (new UserStrategy(new DefaultUserFindStrategy())).executar(usuario.email)
 
             if(userEncontrado){
                 let senhaCorreta = await this.compararSenha(usuario.senha, userEncontrado.senha)
-
                 if(senhaCorreta){
                     let token
                     try{

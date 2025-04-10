@@ -9,13 +9,14 @@ export default class Factory{
         switch(tipo){
             case 'usuario':
                 let builder = BuilderFactory.builderFactory('usuario')
+                obj.senha = await userFunctions.setHash(obj.senha)
                 let usuarioBuilder = builder.setAdmin(obj.admin).setEmail(obj.email).setFoto(obj.foto).setNome(obj.nome).setSenha(obj.senha).build();
     
                 let credenciaisUtilizadas = await userFunctions.verificaUserCadastrados(usuarioBuilder)
                 if(credenciaisUtilizadas){
                     return credenciaisUtilizadas
                 }
-                let usuarioCriado = UserStrategyFactory.userStrategyFactory('usuario',subtipo,usuarioBuilder)
+                let usuarioCriado = await UserStrategyFactory.userStrategyFactory('usuario',subtipo,usuarioBuilder)
 
                 if(usuarioCriado){
                     return {status: 200, msg:'Usuário Cadastrado'}

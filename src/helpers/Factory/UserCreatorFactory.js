@@ -1,4 +1,4 @@
-import UserStrategy from './Strategies/UserCreator/UserStrategy.js'
+import UserStrategy from './Strategies/UserStrategy.js'
 import DefaultUserCreationStrategy from './Strategies/UserCreator/DefaultUserCreationStrategy.js'
 
 export default class UserCreatorFactory{

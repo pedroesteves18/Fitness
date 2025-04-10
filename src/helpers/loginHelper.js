@@ -27,7 +27,7 @@ export default {
         }
 
         if(erros.length === 0){
-            return loginFunctions.procuraUserLogin(usuario)
+            return await loginFunctions.procuraUserLogin(usuario)
         }
         console.log(erros)
         let msg = ''
